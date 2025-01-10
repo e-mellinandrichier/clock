@@ -7,9 +7,11 @@ import sys
 
 counter24or12 = 0
 alarmornot = 0
+timestop = 0
 alarm_hour = None 
 alarm_minute = None
 alarm_second = None
+
 
 def current_time(): 
     my_datetime = datetime.datetime.today()
@@ -50,6 +52,8 @@ def display_time(a, b, c):
                     amorpm = "PM"
             timer = datetime.time(a, b, c)
             print(timer, amorpm)
+            if timestop % 2 == 1:
+                break
             if alarmornot % 2 == 1:
                 alarm(alarm_hour, alarm_minute, alarm_second, a, b, c)
             print("ctrl c pour arrêter")
@@ -72,7 +76,6 @@ def setalarm():
     alarm = (alarm_hour, alarm_minute, alarm_second)
     return(alarm)
 
-t1 = threading.Thread(target=current_time, daemon = True).start()
 def menu():
     while 1 == 1:
         print("Bonjour Mamie ! Que veux-tu faire aujourd'hui ?")
@@ -92,6 +95,7 @@ def menu():
                 try : 
                     my_time = current_time()
                     print(my_time)
+                    global timestop
                     global alarmornot
                     global alarm_hour
                     global alarm_minute
@@ -99,6 +103,8 @@ def menu():
                     print("ctrl c pour arrêter")
                     time.sleep(1)
                     os.system('cls')
+                    if timestop % 2 == 1:
+                        break
                 except KeyboardInterrupt:
                     menu()
         if answermenu == 3:
@@ -107,6 +113,7 @@ def menu():
             display_time_minute = int(input("heure"))
             display_time_second = int(input("heure"))
             display_time(display_time_hour, display_time_minute, display_time_second)
+
         if answermenu == 4:
             os.system('cls')
             alarmornot += 1
@@ -115,10 +122,12 @@ def menu():
             alarm_minute = alarm[1]
             alarm_second = alarm[2]
             print("alarme activée")
+
+        if answermenu == 5:
+            timestop +=1 
         
         if answermenu == 6:
             print("Bonne journée Mamie !")
             exit()
-            
 menu()
 
