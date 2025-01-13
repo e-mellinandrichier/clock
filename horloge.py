@@ -1,5 +1,6 @@
 import datetime
 import time
+from playsound import playsound
 
 
 def alarm(a_h,a_m,a_s,c_h,c_m,c_s):
@@ -7,6 +8,7 @@ def alarm(a_h,a_m,a_s,c_h,c_m,c_s):
         if a_m == c_m :
                 if a_s == c_s :
                     print("Wake up")
+                    playsound("tropicalalarm.mp3")
 
 
 def display_time():
@@ -38,7 +40,6 @@ def current_hour():
             alarm (alarm_hours,alarm_minutes,alarm_seconds,c.hour,c.minute,c.second)
         time.sleep(1)
     
-
 
 print("Hello and welcome into your clock first do you wish an alarm ?")
 answer = input("Answer by yes or no")
