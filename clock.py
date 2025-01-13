@@ -1,13 +1,12 @@
 import datetime
 import os
 import time
-import threading
-import signal
-import sys
+
 
 counter24or12 = 0
 alarmornot = 0
 timestop = 0
+t1 = 0
 alarm_hour = None 
 alarm_minute = None
 alarm_second = None
@@ -108,12 +107,12 @@ def menu():
                 except KeyboardInterrupt:
                     menu()
         if answermenu == 3:
-            os.system('cls')
             display_time_hour = int(input("heure"))
             display_time_minute = int(input("heure"))
             display_time_second = int(input("heure"))
+            os.system('cls')
             display_time(display_time_hour, display_time_minute, display_time_second)
-
+            
         if answermenu == 4:
             os.system('cls')
             alarmornot += 1
